@@ -1,4 +1,4 @@
-// import 'package:fl_chart/fl_chart.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import '../component/appBar.dart';
 import '../component/card.dart';
@@ -105,9 +105,12 @@ class DetailWalletScreen extends StatelessWidget {
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 5,
                     child: Stack(children: [
-                      // LineChart(
-                      //   sampleData(),
-                      // ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: LineChart(
+                          sampleData(),
+                        ),
+                      ),
                       Positioned(
                         bottom: 20,
                         left: 20,
@@ -157,58 +160,58 @@ class DetailWalletScreen extends StatelessWidget {
     );
   }
 
-  // LineChartData sampleData() {
-  //   return LineChartData(
-  //     lineTouchData: LineTouchData(
-  //       enabled: false,
-  //     ),
-  //     gridData: FlGridData(
-  //       show: false,
-  //     ),
-  //     titlesData: FlTitlesData(
-  //       bottomTitles: SideTitles(
-  //         showTitles: false,
-  //       ),
-  //       leftTitles: SideTitles(
-  //         showTitles: false,
-  //       ),
-  //     ),
-  //     borderData: FlBorderData(
-  //       show: false,
-  //     ),
-  //     // minX: 0,
-  //     maxX: 12,
-  //     maxY: 4,
-  //     minY: 0,
-  //     lineBarsData: linesBarData(),
-  //   );
-  // }
-  //
-  // List<LineChartBarData> linesBarData() {
-  //   return [
-  //     LineChartBarData(
-  //       spots: [
-  //         FlSpot(1, 2),
-  //         FlSpot(3, 2.8),
-  //         FlSpot(7, 2.2),
-  //         FlSpot(10, 2.8),
-  //         FlSpot(12, 2.6),
-  //         FlSpot(13, 3),
-  //       ],
-  //       isCurved: true,
-  //       colors: const [
-  //         Colors.orangeAccent,
-  //       ],
-  //       barWidth: 4,
-  //       isStrokeCapRound: true,
-  //       dotData: FlDotData(
-  //         show: false,
-  //       ),
-  //       belowBarData: BarAreaData(show: true, colors: [
-  //         Colors.orange[100],
-  //       ]),
-  //     ),
-  //   ];
+  LineChartData sampleData() {
+    return LineChartData(
+      lineTouchData: LineTouchData(
+        enabled: false,
+      ),
+      gridData: FlGridData(
+        show: false,
+      ),
+      titlesData: FlTitlesData(
+        bottomTitles: SideTitles(
+          showTitles: false,
+        ),
+        leftTitles: SideTitles(
+          showTitles: false,
+        ),
+      ),
+      borderData: FlBorderData(
+        show: false,
+      ),
+      // minX: 0,
+      maxX: 12,
+      maxY: 4,
+      minY: 0,
+      lineBarsData: linesBarData(),
+    );
+  }
+
+  List<LineChartBarData> linesBarData() {
+    return [
+      LineChartBarData(
+        spots: [
+          const FlSpot(1, 2),
+          const FlSpot(3, 2.8),
+          const FlSpot(7, 2.2),
+          const FlSpot(10, 2.8),
+          const FlSpot(12, 2.6),
+          const FlSpot(13, 3),
+        ],
+        isCurved: true,
+        colors: const [
+          Colors.orangeAccent,
+        ],
+        barWidth: 4,
+        isStrokeCapRound: true,
+        dotData: FlDotData(
+          show: false,
+        ),
+        belowBarData: BarAreaData(show: true, colors: [
+          Colors.deepOrangeAccent,
+        ]),
+      ),
+    ];
   }
 
   Widget _dot({double size = 10, Color color = Colors.black}) {
@@ -302,7 +305,7 @@ class DetailWalletScreen extends StatelessWidget {
   Widget _actionButton({required Color color, required String text}) {
     return card(
         child: Column(
-      children: [
+        children: [
         ClipOval(
           child: Material(
             color: color,
@@ -325,4 +328,4 @@ class DetailWalletScreen extends StatelessWidget {
       ],
     ));
   }
-// }
+}

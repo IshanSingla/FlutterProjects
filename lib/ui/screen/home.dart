@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:clyde_project/ui/component.dart';
 import 'package:clyde_project/ui/screen/detail_wallet.dart';
+import 'dart:io';
+
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -12,13 +16,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 25,
         ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(children: [
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             GestureDetector(
@@ -39,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 precent: -2.999),
           ]),
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         Padding(
@@ -47,9 +51,9 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Sorted by higher %',
+              const Text('Sorted by higher %',
                   style: TextStyle(color: Colors.black45)),
-              Row(children: [
+              Row(children: const [
                 Text(
                   '24H',
                   style: TextStyle(color: Colors.black45),
@@ -59,40 +63,40 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  _listCryptoItem(
-                    iconUrl:
-                        'https://icons.iconarchive.com/icons/cjdowner/cryptocurrency/128/Bitcoin-icon.png',
-                    myCrypto: '3.529020 BTC',
-                    myBalance: '\$ 5.441',
-                    myProfit: '\$19.153',
-                    precent: 4.32,
+                  GestureDetector(
+                    child: _listCryptoItem(
+                      iconUrl:
+                          'https://icons.iconarchive.com/icons/cjdowner/cryptocurrency/128/Bitcoin-icon.png',
+                      myCrypto: '3.529020',
+                      myBalance: '\$ 5.441',
+                      myProfit: '\$19.153',
+                      precent: 4.32,
+                    ),
                   ),
-                  _listCryptoItem(
-                    iconUrl:
-                        'https://icons.iconarchive.com/icons/cjdowner/cryptocurrency/128/Ethereum-icon.png',
-                    myCrypto: '12.83789 ETH',
-                    myBalance: '\$ 401',
-                    myProfit: '\$4.822',
-                    precent: 3.97,
+                  GestureDetector(
+                    onTap: (){
+
+                    },
+                    child: _listCryptoItem(
+                      iconUrl:
+                          'https://icons.iconarchive.com/icons/cjdowner/cryptocurrency/128/Ethereum-icon.png',
+                      myCrypto: '12.83789',
+                      myBalance: '\$ 401',
+                      myProfit: '\$4.822',
+                      precent: 3.97,
+                    ),
                   ),
-                  _listCryptoItem(
-                    iconUrl:
-                        'https://icons.iconarchive.com/icons/cjdowner/cryptocurrency/128/Ripple-icon.png',
-                    myCrypto: '1911.6374736 XRP',
-                    myBalance: '\$ 0.45',
-                    myProfit: '\$859',
-                    precent: -13.55,
-                  ),
+
                 ],
               ),
             ),
@@ -101,6 +105,14 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
     );
   }
+  void main(List args) async {
+    final client = HttpClient(); // Create a new HttpClient
+    final request = await client.postUrl(Uri.parse(
+        'http://www.induced.me/api/moneyout?userid=73939&amount=20')); // Create a new HttpClientRequest
+    request.headers.set(
+        HttpHeaders.contentTypeHeader, 'application/json; charset=UTF-8');
+    print(request);
+  } // Set the headers
 
   Widget _cardWalletBalance(BuildContext context,
       {required String total, totalCrypto, required double precent}) {
@@ -120,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.black87,
                     child: InkWell(
                       splashColor: Colors.red, // inkwell color
-                      child: SizedBox(
+                      child: const SizedBox(
                           width: 56,
                           height: 56,
                           child: Icon(
