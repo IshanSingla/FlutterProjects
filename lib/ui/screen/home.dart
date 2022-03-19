@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:clyde_project/ui/component.dart';
 import 'package:clyde_project/ui/screen/detail_wallet.dart';
-import 'dart:io';
-
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,6 +10,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  double per = 3.97;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,7 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => DetailWalletScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const DetailWalletScreen()),
                 );
               },
               child: _cardWalletBalance(context,
@@ -84,32 +84,36 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: (){
-
-                    },
+                    onTap: () {},
                     child: _listCryptoItem(
                       iconUrl:
                           'https://icons.iconarchive.com/icons/cjdowner/cryptocurrency/128/Ethereum-icon.png',
                       myCrypto: '12.83789',
                       myBalance: '\$ 401',
                       myProfit: '\$4.822',
-                      precent: 3.97,
+                      precent: per,
                     ),
                   ),
-                  GestureDetector(
-                    onTap: (){
-
-                    },
-                    child: _listCryptoItem(
-                      iconUrl:
-                      'https://icons.iconarchive.com/icons/cjdowner/cryptocurrency/128/Ripple-icon.png',
-                      myCrypto: '1911.6374736 XRP',
-                      myBalance: '\$ 0.45',
-                      myProfit: '\$859',
-                      precent: -13.55,
+                  Row(children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          per++;
+                        });
+                      },
+                      child: _cardButton(text: 'Send')
                     ),
+                    const SizedBox(width: 8.0,),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          per--;
+                        });
+                      },
+                      child: _cardButton(text: 'Receive')
+                    ),
+                  ],
                   ),
-
                 ],
               ),
             ),
@@ -118,15 +122,27 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
     );
   }
-  void main(List args) async {
-    final client = HttpClient(); // Create a new HttpClient
-    final request = await client.postUrl(Uri.parse(
-        'http://www.induced.me/api/moneyout?userid=73939&amount=20')); // Create a new HttpClientRequest
-    request.headers.set(
-        HttpHeaders.contentTypeHeader, 'application/json; charset=UTF-8');
-    print(request);
-  } // Set the headers
-
+Widget _cardButton({required String text}){
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        width: 150,
+        height: 50,
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black45,
+              offset: Offset(0.0, 1.0), //(x,y)
+              blurRadius: 6.0,
+            ),
+          ],
+        ),
+        child: Center(child: Text(text, style: const TextStyle(fontWeight: FontWeight.bold),)),
+      ),
+    );
+}
   Widget _cardWalletBalance(BuildContext context,
       {required String total, totalCrypto, required double precent}) {
     return Padding(
@@ -163,7 +179,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
                 Row(
-                  children: const [Text('USD'), Icon(Icons.keyboard_arrow_down)],
+                  children: const [
+                    Text('USD'),
+                    Icon(Icons.keyboard_arrow_down)
+                  ],
                 )
               ],
             ),
@@ -179,10 +198,19 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.black87),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
                   decoration: BoxDecoration(
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black45,
+                          offset: Offset(0.0, 1.0), //(x,y)
+                          blurRadius: 6.0,
+                        ),
+                      ],
                       color: precent >= 0 ? Colors.green : Colors.pink,
-                      borderRadius: const BorderRadius.all(Radius.circular(30))),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(30))),
                   child: Text(
                     precent >= 0 ? '+ $precent %' : '$precent %',
                     style: const TextStyle(
@@ -238,7 +266,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Text(
                     myCrypto,
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                   Text(
                     '$myProfit',
@@ -256,7 +285,8 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Text(
                   '$myBalance',
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 18),
                 ),
                 Text(
                   precent >= 0 ? '+ $precent %' : '$precent %',
