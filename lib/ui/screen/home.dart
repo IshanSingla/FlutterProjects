@@ -96,6 +96,19 @@ class _HomeScreenState extends State<HomeScreen> {
                       precent: 3.97,
                     ),
                   ),
+                  GestureDetector(
+                    onTap: (){
+
+                    },
+                    child: _listCryptoItem(
+                      iconUrl:
+                      'https://icons.iconarchive.com/icons/cjdowner/cryptocurrency/128/Ripple-icon.png',
+                      myCrypto: '1911.6374736 XRP',
+                      myBalance: '\$ 0.45',
+                      myProfit: '\$859',
+                      precent: -13.55,
+                    ),
+                  ),
 
                 ],
               ),
@@ -144,35 +157,35 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                SizedBox(width: 20),
-                Expanded(
+                const SizedBox(width: 20),
+                const Expanded(
                   child: Text('Total Wallet Balance',
                       style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
                 Row(
-                  children: [Text('USD'), Icon(Icons.keyboard_arrow_down)],
+                  children: const [Text('USD'), Icon(Icons.keyboard_arrow_down)],
                 )
               ],
             ),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '$total',
-                  style: TextStyle(
+                  total,
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 40,
                       color: Colors.black87),
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
                   decoration: BoxDecoration(
                       color: precent >= 0 ? Colors.green : Colors.pink,
-                      borderRadius: BorderRadius.all(Radius.circular(30))),
+                      borderRadius: const BorderRadius.all(Radius.circular(30))),
                   child: Text(
                     precent >= 0 ? '+ $precent %' : '$precent %',
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -181,15 +194,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
               ],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               '$totalCrypto',
-              style: TextStyle(
+              style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 22,
                   color: Colors.black38),
             ),
-            Center(
+            const Center(
               child: Icon(Icons.keyboard_arrow_down,
                   size: 30, color: Colors.black45),
             )
@@ -212,10 +225,10 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Image.network(
-              '$iconUrl',
+              iconUrl,
               width: 50,
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Expanded(
@@ -224,12 +237,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    '$myCrypto',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    myCrypto,
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                   Text(
                     '$myProfit',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.black45,
                     ),
@@ -243,7 +256,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Text(
                   '$myBalance',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
                 Text(
                   precent >= 0 ? '+ $precent %' : '$precent %',
