@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:clyde_project/ui/component.dart';
 import 'package:clyde_project/ui/screen/detail_wallet.dart';
+import 'package:clyde_project/ui/component/logic.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,6 +12,18 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   double per = 3.97;
+  dynamic futureAlbum;
+  bool fetched = false;
+  dynamic ValueAmount;
+  _HomeScreenState(){
+      test();
+  }
+  Future<void> test() async{
+    futureAlbum = await fetchAlbum();
+    fetched = true;
+    print(futureAlbum);
+    ValueAmount = futureAlbum;
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -78,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       iconUrl:
                           'https://i.pinimg.com/originals/0d/e4/1a/0de41a3c5953fba1755ebd416ec109dd.gif',
                       totalDebitCredit: 'Debited',
-                      myBalance: '\$ 5.441',
+                      myBalance: '\$ $futureAlbum',
                       myProfit: '\$19.153',
                       precent: 4.32,
                     ),
@@ -89,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       iconUrl:
                           'https://cdn.dribbble.com/users/1303437/screenshots/3202506/multiple-cards-800x600_2.gif',
                       totalDebitCredit: 'Credited',
-                      myBalance: '\$ 401',
+                      myBalance: '\$401',
                       myProfit: '\$4.822',
                       precent: per,
                     ),
@@ -97,24 +110,24 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          per++;
-                        });
-                      },
-                      child: _cardButton(text: 'Send')
-                    ),
-                    const SizedBox(width: 18.0,),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          per--;
-                        });
-                      },
-                      child: _cardButton(text: 'Receive')
-                    ),
-                  ],
+                      GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              per++;
+                            });
+                          },
+                          child: _cardButton(text: 'Send')),
+                      const SizedBox(
+                        width: 18.0,
+                      ),
+                      GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              per--;
+                            });
+                          },
+                          child: _cardButton(text: 'Receive')),
+                    ],
                   ),
                 ],
               ),
@@ -124,7 +137,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
     );
   }
-Widget _cardButton({required String text}){
+
+  Widget _cardButton({required String text}) {
     return Padding(
       padding: const EdgeInsets.all(0.0),
       child: Container(
@@ -141,10 +155,15 @@ Widget _cardButton({required String text}){
             ),
           ],
         ),
-        child: Center(child: Text(text, style: const TextStyle(fontWeight: FontWeight.bold),)),
+        child: Center(
+            child: Text(
+          text,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        )),
       ),
     );
-}
+  }
+
   Widget _cardWalletBalance(BuildContext context,
       {required String total, totalCrypto, required double precent}) {
     return Padding(
@@ -254,12 +273,7 @@ Widget _cardButton({required String text}){
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.network(
-              iconUrl,
-              width: 95,
-              height: 90,
-              fit:BoxFit.fill
-            ),
+            Image.network(iconUrl, width: 95, height: 90, fit: BoxFit.fill),
             const SizedBox(
               width: 20,
             ),

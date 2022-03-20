@@ -16,10 +16,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-    _MyAppState(){
-      Map<String, dynamic> ish=fetchAlbum();
-      print(ish);
+    dynamic futureAlbum;
+    @override
+    void initState() {
+      super.initState();
+
     }
+
+    _MyAppState(){
+      futureAlbum = fetchAlbum();
+      print(futureAlbum);
+    }
+
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
