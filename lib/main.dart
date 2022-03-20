@@ -2,24 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:clyde_project/ui/component.dart';
 import 'package:clyde_project/ui/screen/home.dart';
 import 'package:clyde_project/ui/screen/explore.dart';
+import 'package:http/http.dart' as http;
+import '../ui/component/logic.dart';
 
 
 void main() {
   runApp(const MyApp());
+  print("hello");
 }
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
+    _MyAppState(){
+      print(fetchAlbum());
+    }
+    late dynamic futureAlbum;
+
+    @override
+    void initState() {
+      super.initState();
+      futureAlbum = fetchAlbum();
+    }
+    // ···
+    Future<http.Response> fetchAlbum() {
+      return http.get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
+    }
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Wallet Cryptocurrency',
+      title: 'Clyde Wallet',
       home: MainApp(),
       debugShowCheckedModeBanner: false,
     );

@@ -10,7 +10,7 @@ Widget appBar({required Widget left, required String title, required Widget righ
         children: [
           left,
           Text(
-            '$title',
+            title,
             style: TextStyle(
               color: Colors.black54,
               fontSize: 25,
