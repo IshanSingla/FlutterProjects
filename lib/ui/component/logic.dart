@@ -9,8 +9,6 @@ dynamic fetchAlbum() async {
       .get(Uri.parse('https://www.induced.me/api/moneyin?userid=123&amount=10'));
 
   if (response.statusCode == 200) {
-    print(response.body);
-    print(json.decode(response.body));
     return json.decode(response.body);
 
   } else {
