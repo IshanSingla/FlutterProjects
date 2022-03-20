@@ -8,7 +8,6 @@ import '../ui/component/logic.dart';
 
 void main() {
   runApp(const MyApp());
-  print("hello");
 }
 
 class MyApp extends StatefulWidget {
@@ -18,19 +17,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-    _MyAppState(){
-      print(fetchAlbum());
-    }
-    late dynamic futureAlbum;
+  dynamic futureAlbum;
 
-    @override
-    void initState() {
-      super.initState();
-      futureAlbum = fetchAlbum();
-    }
-    // ···
-    Future<http.Response> fetchAlbum() {
-      return http.get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
+  @override
+  void initState() {
+    super.initState();
+    futureAlbum = fetchAlbum();
+  }
+    _MyAppState(){
+      print(futureAlbum);
     }
   @override
   Widget build(BuildContext context) {
