@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   double per = 3.97;
   dynamic futureAlbum;
+  dynamic checkBalanceAmount;
   bool fetched = false;
   dynamic ValueAmount;
   _HomeScreenState(){
@@ -22,6 +23,10 @@ class _HomeScreenState extends State<HomeScreen> {
     futureAlbum = await fetchAlbum();
     fetched = true;
     print(futureAlbum);
+  }
+  Future<void> Balance() async{
+    checkBalanceAmount = moneyCheck();
+    print(checkBalanceAmount);
   }
   @override
   Widget build(BuildContext context) {
@@ -45,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
               child: _cardWalletBalance(context,
-                  total: '\$39.589',
+                  total: '\$ $futureAlbum.000',
                   totalCrypto: '7.251332 CRD',
                   precent: 7.999),
             ),
@@ -90,18 +95,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: _listCryptoItem(
                       iconUrl:
                           'https://i.pinimg.com/originals/0d/e4/1a/0de41a3c5953fba1755ebd416ec109dd.gif',
-                      totalDebitCredit: 'Debited',
+                      totalDebitCredit: 'Credited',
                       myBalance: '\$ $futureAlbum',
                       myProfit: '\$19.153',
                       precent: 4.32,
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+
+                    },
                     child: _listCryptoItem(
                       iconUrl:
                           'https://cdn.dribbble.com/users/1303437/screenshots/3202506/multiple-cards-800x600_2.gif',
-                      totalDebitCredit: 'Credited',
+                      totalDebitCredit: 'Debited',
                       myBalance: '\$401',
                       myProfit: '\$4.822',
                       precent: per,
