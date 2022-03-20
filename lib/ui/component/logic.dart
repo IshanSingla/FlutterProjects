@@ -11,7 +11,7 @@ var response = http.get(Uri.https(
       {
         'userid': 1234,
         'amount': 20,
-      }),);
+      },);
 
 if (response.statusCode == 200) {
     Map<String, dynamic> data = json.decode(response.body);
