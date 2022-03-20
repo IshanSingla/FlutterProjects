@@ -110,15 +110,15 @@ class _MainAppState extends State<MainApp> {
   Widget _buildScreen() {
     switch (_currentItem) {
       case TabItem.home:
-        return HomeScreen();
+        return const HomeScreen();
       case TabItem.explore:
-        return ExploreScreen();
+        return const ExploreScreen();
       case TabItem.notification:
       // return HomeScreen()
       case TabItem.setting:
       // return HomeScreen()
       default:
-        return HomeScreen();
+        return const HomeScreen();
     }
   }
 }
