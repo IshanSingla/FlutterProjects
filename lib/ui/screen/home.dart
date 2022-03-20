@@ -76,8 +76,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   GestureDetector(
                     child: _listCryptoItem(
                       iconUrl:
-                          'https://icons.iconarchive.com/icons/cjdowner/cryptocurrency/128/Bitcoin-icon.png',
-                      myCrypto: '3.529020',
+                          'https://i.pinimg.com/originals/0d/e4/1a/0de41a3c5953fba1755ebd416ec109dd.gif',
+                      totalDebitCredit: 'Debited',
                       myBalance: '\$ 5.441',
                       myProfit: '\$19.153',
                       precent: 4.32,
@@ -87,14 +87,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () {},
                     child: _listCryptoItem(
                       iconUrl:
-                          'https://icons.iconarchive.com/icons/cjdowner/cryptocurrency/128/Ethereum-icon.png',
-                      myCrypto: '12.83789',
+                          'https://cdn.dribbble.com/users/1303437/screenshots/3202506/multiple-cards-800x600_2.gif',
+                      totalDebitCredit: 'Credited',
                       myBalance: '\$ 401',
                       myProfit: '\$4.822',
                       precent: per,
                     ),
                   ),
-                  Row(children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -103,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                       child: _cardButton(text: 'Send')
                     ),
-                    const SizedBox(width: 8.0,),
+                    const SizedBox(width: 18.0,),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -124,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 Widget _cardButton({required String text}){
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(0.0),
       child: Container(
         width: 150,
         height: 50,
@@ -243,7 +245,7 @@ Widget _cardButton({required String text}){
   Widget _listCryptoItem(
       {required String iconUrl,
       double precent = 0,
-      required String myCrypto,
+      required String totalDebitCredit,
       myBalance,
       myProfit}) {
     return Padding(
@@ -254,7 +256,9 @@ Widget _cardButton({required String text}){
           children: [
             Image.network(
               iconUrl,
-              width: 50,
+              width: 95,
+              height: 90,
+              fit:BoxFit.fill
             ),
             const SizedBox(
               width: 20,
@@ -265,7 +269,7 @@ Widget _cardButton({required String text}){
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    myCrypto,
+                    totalDebitCredit,
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 18),
                   ),
