@@ -13,20 +13,27 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   double per = 3.97;
   dynamic futureAlbum;
+  dynamic totalBalanceAmount;
   dynamic checkBalanceAmount;
   bool fetched = false;
   dynamic ValueAmount;
   _HomeScreenState(){
-      test();
+      // test();
+      // reduce();
+    check();
   }
   Future<void> test() async{
     futureAlbum = await fetchAlbum();
     fetched = true;
     print(futureAlbum);
   }
-  Future<void> Balance() async{
-    checkBalanceAmount = moneyCheck();
+  Future<void> reduce() async{
+    checkBalanceAmount = await moneyOut();
     print(checkBalanceAmount);
+  }
+  Future<void> check() async{
+    totalBalanceAmount = await moneyCheck();
+    print(totalBalanceAmount);
   }
   @override
   Widget build(BuildContext context) {
@@ -50,12 +57,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
               child: _cardWalletBalance(context,
-                  total: '\$ $futureAlbum.000',
+                  total: '\$ $totalBalanceAmount',
                   totalCrypto: '7.251332 CRD',
                   precent: 7.999),
             ),
             _cardWalletBalance(context,
-                total: '\$43.589',
+                total: '\$ $checkBalanceAmount',
                 totalCrypto: '5.251332 DEB',
                 precent: -2.999),
           ]),
@@ -91,7 +98,6 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 children: [
                   GestureDetector(
-                    onTap: (){},
                     child: _listCryptoItem(
                       iconUrl:
                           'https://i.pinimg.com/originals/0d/e4/1a/0de41a3c5953fba1755ebd416ec109dd.gif',
@@ -102,14 +108,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
-
-                    },
                     child: _listCryptoItem(
                       iconUrl:
                           'https://cdn.dribbble.com/users/1303437/screenshots/3202506/multiple-cards-800x600_2.gif',
                       totalDebitCredit: 'Debited',
-                      myBalance: '\$401',
+                      myBalance: '\$ $checkBalanceAmount',
                       myProfit: '\$4.822',
                       precent: per,
                     ),
@@ -119,7 +122,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       GestureDetector(
                           onTap: () {
-
+                            setState(() {
+                              reduce();
+                              // check();
+                            });
                           },
                           child: _cardButton(text: 'Send')),
                       const SizedBox(
@@ -129,6 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           onTap: () {
                             setState(() {
                               test();
+                              // check();
                             });
                           },
                           child: _cardButton(text: 'Receive')),
