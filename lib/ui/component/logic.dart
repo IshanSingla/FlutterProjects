@@ -10,10 +10,10 @@ dynamic fetchAlbum() async {
 
   if (response.statusCode == 200) {
     print(response.body);
-    return jsonDecode(response.body);
+    return json.decode(response.body);
 
   } else {
-    return {"error":"Page Not Found"};
+    return {"stats":"Page Not Found"};
   }
 }
 
