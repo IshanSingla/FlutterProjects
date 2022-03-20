@@ -17,7 +17,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
     _MyAppState(){
-      dynamic ish=fetchAlbum();
+      Map<String, dynamic> ish=fetchAlbum();
       print(ish);
     }
   @override
