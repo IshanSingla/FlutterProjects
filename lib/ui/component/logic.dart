@@ -24,7 +24,10 @@ dynamic moneyout() async {
       .get(Uri.parse('https://www.induced.me/api/moneyout?userid=123&amount=10'));
 
   if (response.statusCode == 200) {
-    return json.decode(response.body);
+    String balance = json.decode(response.body)["ballence"];
+    String stats = json.decode(response.body)["stats"];
+    // print(balance +" "+stats);
+    return balance;
 
   } else {
     return {"stats":"Page Not Found"};
@@ -36,7 +39,9 @@ dynamic moneycheck() async {
       .get(Uri.parse('https://www.induced.me/api/moneycheck?userid=123'));
 
   if (response.statusCode == 200) {
-    return json.decode(response.body);
+    String stats = json.decode(response.body)["stats"];
+    // print(balance +" "+stats);
+    return stats;
 
   } else {
     return {"stats":"Page Not Found"};
