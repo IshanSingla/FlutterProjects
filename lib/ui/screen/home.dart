@@ -22,7 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
     futureAlbum = await fetchAlbum();
     fetched = true;
     print(futureAlbum);
-    ValueAmount = futureAlbum;
   }
   @override
   Widget build(BuildContext context) {
@@ -87,6 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 children: [
                   GestureDetector(
+                    onTap: (){},
                     child: _listCryptoItem(
                       iconUrl:
                           'https://i.pinimg.com/originals/0d/e4/1a/0de41a3c5953fba1755ebd416ec109dd.gif',
@@ -112,9 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       GestureDetector(
                           onTap: () {
-                            setState(() {
-                              per++;
-                            });
+
                           },
                           child: _cardButton(text: 'Send')),
                       const SizedBox(
@@ -123,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       GestureDetector(
                           onTap: () {
                             setState(() {
-                              per--;
+                              test();
                             });
                           },
                           child: _cardButton(text: 'Receive')),
