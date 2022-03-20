@@ -1,7 +1,20 @@
-
+import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart' as http;
 
-var url = Uri.parse('https://www.induced.me/api/moneyin');
-var response = await http.post(url, body: {'userid': 1233, 'ammount': 20});
-print('Response status: ${response.statusCode}');
-print('Response body: ${response.body}');
+Map<String, String> headers = {
+      HttpHeaders.contentTypeHeader: 'application/json',
+};
+var response = http.get(Uri.https(
+  'www.induced.me',
+  '/api/moneyin',
+      {
+        'userid': 1234,
+        'amount': 20,
+      }),);
+
+if (response.statusCode == 200) {
+    Map<String, dynamic> data = json.decode(response.body);
+}
+
+
