@@ -15,26 +15,39 @@ class _HomeScreenState extends State<HomeScreen> {
   dynamic futureAlbum;
   dynamic totalBalanceAmount;
   dynamic checkBalanceAmount;
+  dynamic checkTransAmount;
+  dynamic checkCr;
+  dynamic checkDr;
   bool fetched = false;
   dynamic ValueAmount;
-  _HomeScreenState(){
-      // test();
-      // reduce();
-    // check();
+  @override
+  void initState() {
+    super.initState();
+    check();
+    checkTran();
   }
+  _HomeScreenState(){}
   Future<void> test() async{
     futureAlbum = await fetchAlbum();
     fetched = true;
-    print(futureAlbum);
+    // print(futureAlbum);
   }
   Future<void> reduce() async{
     checkBalanceAmount = await moneyOut();
-    print(checkBalanceAmount);
+    // print(checkBalanceAmount);
   }
-  // Future<void> check() async{
-  //   totalBalanceAmount = await moneyCheck();
-  //   print(totalBalanceAmount);
-  // }
+  Future<void> check() async{
+    totalBalanceAmount = await moneyCheck();
+    // print(totalBalanceAmount);
+  }
+  Future<void> checkTran() async{
+    checkTransAmount = await moneyTrans();
+    checkCr = checkTransAmount[0];
+    checkDr = checkTransAmount[1];
+    // print(checkTransAmount);
+    // print(checkCr);
+    // print(checkDr);
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -57,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
               child: _cardWalletBalance(context,
-                  total: '\$ $futureAlbum',
+                  total: '\$ $totalBalanceAmount',
                   totalCrypto: '7.251332 CRD',
                   precent: 7.999),
             ),
@@ -102,9 +115,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       iconUrl:
                           'https://i.pinimg.com/originals/0d/e4/1a/0de41a3c5953fba1755ebd416ec109dd.gif',
                       totalDebitCredit: 'Credited',
-                      myBalance: '\$ $futureAlbum',
-                      myProfit: '\$19.153',
-                      precent: 4.32,
+                      myBalance: 'Total - $checkCr',
+                      myProfit: '\$10.00',
+                      precent: 00,
                     ),
                   ),
                   GestureDetector(
@@ -112,9 +125,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       iconUrl:
                           'https://cdn.dribbble.com/users/1303437/screenshots/3202506/multiple-cards-800x600_2.gif',
                       totalDebitCredit: 'Debited',
-                      myBalance: '\$ $checkBalanceAmount',
-                      myProfit: '\$4.822',
-                      precent: per,
+                      myBalance: 'Total - $checkDr',
+                      myProfit: '\$10.00',
+                      precent: 00,
                     ),
                   ),
                   Row(
@@ -124,7 +137,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           onTap: () {
                             setState(() {
                               reduce();
-                              // check();
+                              check();
+                              checkTran();
                             });
                           },
                           child: _cardButton(text: 'Send')),
@@ -135,7 +149,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           onTap: () {
                             setState(() {
                               test();
-                              // check();
+                              check();
+                              checkTran();
                             });
                           },
                           child: _cardButton(text: 'Receive')),
@@ -318,8 +333,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 18),
                 ),
-                Text(
-                  precent >= 0 ? '+ $precent %' : '$precent %',
+                Text('',
+                  // precent >= 0 ? '+ $precent %' : '$precent %',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: precent >= 0 ? Colors.green : Colors.pink,

@@ -39,6 +39,7 @@ Future<dynamic> moneyCheck() async {
       .get(Uri.parse('https://www.induced.me/api/moneycheck?userid=123'));
 
   if (response.statusCode == 200) {
+    // print(response.body);
     String stats = json.decode(response.body)["stats"];
     // print(balance +" "+stats);
     return stats;
@@ -48,11 +49,25 @@ Future<dynamic> moneyCheck() async {
   }
 }
 
-dynamic moneyTrans() async {
+Future<dynamic> moneyTrans() async {
   final response = await http
       .get(Uri.parse('https://www.induced.me/api/moneytrans?userid=123'));
 
   if (response.statusCode == 200) {
+    dynamic list = json.decode(response.body)["transiction"];
+    var Cr = 0;
+    var Dr = 0;
+    for (var i = 0; i < list.length; i++) {
+      if(list[i]['type'] == 'CR'){
+        Cr++;
+      }
+      if(list[i]['type'] == 'DR'){
+        Dr++;
+      }
+    }
+    return [Cr, Dr];
+    // print(list);
+
     return json.decode(response.body);
 
   } else {
