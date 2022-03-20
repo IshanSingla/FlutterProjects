@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:clyde_project/ui/component.dart';
 import 'package:clyde_project/ui/screen/home.dart';
 import 'package:clyde_project/ui/screen/explore.dart';
-import 'package:http/http.dart' as http;
-import '../ui/component/logic.dart';
+import 'package:clyde_project/ui/component/logic.dart';
 
 
 void main() {
