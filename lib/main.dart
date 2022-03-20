@@ -16,15 +16,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  dynamic futureAlbum;
-
-  @override
-  void initState() {
-    super.initState();
-    print(fetchAlbum());
-  }
     _MyAppState(){
-      print(futureAlbum);
+      print(fetchAlbum());
     }
   @override
   Widget build(BuildContext context) {
