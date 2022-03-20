@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:clyde_project/ui/component.dart';
 import 'package:clyde_project/ui/screen/home.dart';
+import 'package:clyde_project/ui/screen/explore.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -50,9 +52,11 @@ class _MainAppState extends State<MainApp> {
         preferredSize: const Size.fromHeight(100.0),
         child: SafeArea(
           child: appBar(
-              left: const Icon(Icons.notes, color: Colors.black54),
-              title: 'Wallets',
-              right: const Icon(Icons.account_balance_wallet, color: Colors.black54)),
+            left: const Icon(Icons.notes, color: Colors.black54),
+            title: 'Clyde Wallet',
+            right:
+                const Icon(Icons.account_balance_wallet, color: Colors.black54),
+          ),
         ),
       ),
       body: _buildScreen(),
@@ -75,7 +79,7 @@ class _MainAppState extends State<MainApp> {
   BottomNavigationBarItem _bottomNavigationBarItem(
       IconData icon, TabItem tabItem) {
     final Color color =
-    _currentItem == tabItem ? Colors.black54 : Colors.black26;
+        _currentItem == tabItem ? Colors.black54 : Colors.black26;
 
     return BottomNavigationBarItem(icon: Icon(icon, color: color), label: '');
   }
@@ -108,7 +112,7 @@ class _MainAppState extends State<MainApp> {
       case TabItem.home:
         return HomeScreen();
       case TabItem.explore:
-      // return HomeScreen();
+        return ExploreScreen();
       case TabItem.notification:
       // return HomeScreen()
       case TabItem.setting:
