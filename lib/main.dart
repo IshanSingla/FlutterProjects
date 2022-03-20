@@ -21,7 +21,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    dynamic futureAlbum = fetchAlbum();
+    print(fetchAlbum());
   }
     _MyAppState(){
       print(futureAlbum);
