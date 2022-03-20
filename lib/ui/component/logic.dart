@@ -23,8 +23,6 @@ dynamic moneyout() async {
       .get(Uri.parse('https://www.induced.me/api/moneyout?userid=123&amount=10'));
 
   if (response.statusCode == 200) {
-    print(response.body);
-    print(json.decode(response.body));
     return json.decode(response.body);
 
   } else {
@@ -37,8 +35,6 @@ dynamic moneycheck() async {
       .get(Uri.parse('https://www.induced.me/api/moneycheck?userid=123'));
 
   if (response.statusCode == 200) {
-    print(response.body);
-    print(json.decode(response.body));
     return json.decode(response.body);
 
   } else {
@@ -51,8 +47,6 @@ dynamic moneytrans() async {
       .get(Uri.parse('https://www.induced.me/api/moneytrans?userid=123'));
 
   if (response.statusCode == 200) {
-    print(response.body);
-    print(json.decode(response.body));
     return json.decode(response.body);
 
   } else {
