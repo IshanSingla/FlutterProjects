@@ -10,6 +10,7 @@ dynamic fetchAlbum() async {
 
   if (response.statusCode == 200) {
     print(response.body);
+    print(json.decode(response.body));
     return json.decode(response.body);
 
   } else {
@@ -23,6 +24,7 @@ dynamic moneyout() async {
 
   if (response.statusCode == 200) {
     print(response.body);
+    print(json.decode(response.body));
     return json.decode(response.body);
 
   } else {
@@ -36,6 +38,7 @@ dynamic moneycheck() async {
 
   if (response.statusCode == 200) {
     print(response.body);
+    print(json.decode(response.body));
     return json.decode(response.body);
 
   } else {
@@ -49,6 +52,7 @@ dynamic moneytrans() async {
 
   if (response.statusCode == 200) {
     print(response.body);
+    print(json.decode(response.body));
     return json.decode(response.body);
 
   } else {
