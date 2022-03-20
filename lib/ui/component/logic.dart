@@ -19,7 +19,7 @@ Future<dynamic> fetchAlbum() async {
   }
 }
 
-dynamic moneyout() async {
+dynamic moneyOut() async {
   final response = await http
       .get(Uri.parse('https://www.induced.me/api/moneyout?userid=123&amount=10'));
 
@@ -34,7 +34,7 @@ dynamic moneyout() async {
   }
 }
 
-dynamic moneycheck() async {
+dynamic moneyCheck() async {
   final response = await http
       .get(Uri.parse('https://www.induced.me/api/moneycheck?userid=123'));
 
@@ -48,7 +48,7 @@ dynamic moneycheck() async {
   }
 }
 
-dynamic moneytrans() async {
+dynamic moneyTrans() async {
   final response = await http
       .get(Uri.parse('https://www.induced.me/api/moneytrans?userid=123'));
 
