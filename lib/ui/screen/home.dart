@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   _HomeScreenState(){
       // test();
       // reduce();
-    check();
+    // check();
   }
   Future<void> test() async{
     futureAlbum = await fetchAlbum();
@@ -31,10 +31,10 @@ class _HomeScreenState extends State<HomeScreen> {
     checkBalanceAmount = await moneyOut();
     print(checkBalanceAmount);
   }
-  Future<void> check() async{
-    totalBalanceAmount = await moneyCheck();
-    print(totalBalanceAmount);
-  }
+  // Future<void> check() async{
+  //   totalBalanceAmount = await moneyCheck();
+  //   print(totalBalanceAmount);
+  // }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
               child: _cardWalletBalance(context,
-                  total: '\$ $totalBalanceAmount',
+                  total: '\$ $futureAlbum',
                   totalCrypto: '7.251332 CRD',
                   precent: 7.999),
             ),
