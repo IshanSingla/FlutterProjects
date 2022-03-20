@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    futureAlbum = fetchAlbum();
+    dynamic futureAlbum = fetchAlbum();
   }
     _MyAppState(){
       print(futureAlbum);
