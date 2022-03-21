@@ -1,5 +1,4 @@
 # clyde_project
-> by Srijan Samridh
 
 A new Flutter project.
 
