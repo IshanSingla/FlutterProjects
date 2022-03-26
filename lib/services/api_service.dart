@@ -19,7 +19,7 @@ class APIService {
     Map<String, String> parameters = {
       'part': 'snippet, contentDetails, statistics',
       'q': word,
-      'key': "AIzaSyDHaYtqlyjOIljQbfRvCxHgfSB3Jtn8DSQ",
+      'key': "key",
       'type':"video"
     };
     Uri uri = Uri.https(
@@ -56,7 +56,7 @@ class APIService {
     Map<String, String> parameters = {
       'part': 'snippet, contentDetails, statistics',
       'id': channelId,
-      'key': "AIzaSyDHaYtqlyjOIljQbfRvCxHgfSB3Jtn8DSQ",
+      'key': "key",
     };
     Uri uri = Uri.https(
       _baseUrl,
